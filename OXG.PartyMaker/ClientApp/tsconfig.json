@@ -18,7 +18,8 @@
     ],
     "skipLibCheck": false,
     "noFallthroughCasesInSwitch": true,
-    "experimentalDecorators":true
+    "experimentalDecorators":true,
+    "noImplicitAny": false
   },
   "include": [
     "src"
