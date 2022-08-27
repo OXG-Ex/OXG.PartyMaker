@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using OXG.PartyMaker.Models.Auth;
 
 namespace OXG.PartyMaker.Models
 {

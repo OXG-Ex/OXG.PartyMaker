@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OXG.PartyMaker.Models
+namespace OXG.PartyMaker.Models.Auth
 {
     public class IdentityUser
     {

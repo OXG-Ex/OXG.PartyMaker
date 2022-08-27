@@ -12,9 +12,6 @@ export const MainRouter: React.FC = () => {
                 <Route path={RouterPaths.Login} element={<LoginPage />} />
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
-
-            {/* <Route path={RouterPaths.NewTrack} component={NewTrack} />
-            <Route path={RouterPaths.AddTime} component={TimeDialog} /> */}
         </Fragment>
     );
 };
