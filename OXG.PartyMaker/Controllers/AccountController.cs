@@ -46,7 +46,7 @@ namespace OXG.PartyMaker.Controllers
         [HttpPost]
         public IActionResult GetToken([FromBody] GetTokenDTO tokenDTO)
         {
-            var v = new { Token = "wqerqwer", Message = "Hello" };
+            var v = new { access_token = "wqerqwer", username = "Hello" };
 
             return new JsonResult(v);
 

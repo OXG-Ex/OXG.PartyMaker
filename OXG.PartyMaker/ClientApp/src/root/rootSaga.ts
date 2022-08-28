@@ -1,8 +1,8 @@
 import { all } from 'redux-saga/effects';
-import loginPageSagas from '../components/login/saga/LoginPageSagas';
+import authSagas from '../components/auth/saga/AuthSaga';
 
 export default function* rootSaga(): Generator {
     yield all([
-        ...loginPageSagas
+        ...authSagas
     ]);
 }

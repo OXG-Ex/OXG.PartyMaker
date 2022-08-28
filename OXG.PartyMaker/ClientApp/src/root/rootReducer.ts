@@ -1,12 +1,11 @@
 import { combineReducers } from "redux";
 
-import loginPageReducer, { initialState as loginPageReducerInitialState } from "../components/login/state/LoginPageReducer";
-
+import authReducer, { initialState as authReducerInitialState } from "../components/auth/AuthReducer";
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const initialStateFunc = () => {
     return {
-        loginPage: loginPageReducerInitialState
+        auth: authReducerInitialState
     };
 };
 
@@ -15,5 +14,5 @@ export const initialState = initialStateFunc();
 export type RootStoreType = typeof initialState;
 
 export const rootReducer = combineReducers({
-    loginPage: loginPageReducer
+    auth: authReducer
 });

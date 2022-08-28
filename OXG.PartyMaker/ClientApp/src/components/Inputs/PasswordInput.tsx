@@ -1,26 +1,30 @@
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { OutlinedInput, InputAdornment, IconButton } from "@mui/material";
+import { OutlinedInput, InputAdornment, IconButton, TextField } from "@mui/material";
+import useId from "@mui/material/utils/useId";
 import React, { ChangeEvent, useCallback, useState } from "react";
 
-export type PasswordFieldProps = {
-    onChangeCallback: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+export type PasswordInputProps = {
+    onChangeCallback: (e: React.ChangeEvent<HTMLInputElement>) => void;
     defaultValue?: string;
+    label?: string;
 };
 
-export const PasswordField: React.FC<PasswordFieldProps> = (props: PasswordFieldProps) => {
+export const PasswordInput: React.FC<PasswordInputProps> = (props: PasswordInputProps) => {
     const [showPassword, setShowPassword] = useState(false);
 
     const handleClickShowPassword = useCallback(() => {
         setShowPassword(!showPassword);
     }, [showPassword]);
 
-    return <OutlinedInput
-        id="outlined-adornment-password"
+    const id = useId();
+
+    return <TextField
+        id={id}
         type={showPassword ? 'text' : 'password'}
         value={props.defaultValue || ""}
         onChange={props.onChangeCallback}
-        endAdornment={
-            <InputAdornment position="end">
+        InputProps={{
+            endAdornment: (<InputAdornment position="end">
                 <IconButton
                     aria-label="toggle password visibility"
                     onClick={handleClickShowPassword}
@@ -29,7 +33,8 @@ export const PasswordField: React.FC<PasswordFieldProps> = (props: PasswordField
                     {showPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
             </InputAdornment>
-        }
-        label="Password"
+            ),
+        }}
+        label={props.label}
     />;
 };
