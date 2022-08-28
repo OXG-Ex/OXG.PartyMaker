@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 
-import loginPageReducer, { initialState as loginPageReducerInitialState } from "../components/login/LoginPageReducer";
+import loginPageReducer, { initialState as loginPageReducerInitialState } from "../components/login/state/LoginPageReducer";
 
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types

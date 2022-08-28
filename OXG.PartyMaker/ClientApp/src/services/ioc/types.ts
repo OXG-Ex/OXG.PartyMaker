@@ -1,5 +1,5 @@
 ﻿const TYPES = {
-    IRestClientFactory: Symbol.for("IRestClientFactory")
+    IRestClient: Symbol.for("IRestClient")
 };
 
 export { TYPES };

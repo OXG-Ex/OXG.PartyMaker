@@ -9,6 +9,7 @@ import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import rootStore from './root/rootStore';
 
+
 ReactDOM.render(
     <Provider store={rootStore.store}>
         <BrowserRouter >

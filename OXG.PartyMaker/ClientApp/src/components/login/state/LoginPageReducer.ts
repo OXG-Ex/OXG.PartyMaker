@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { InputGroup } from "reactstrap";
 
-import { RootStoreType } from "../../root/rootReducer";
+import { RootStoreType } from "../../../root/rootReducer";
 
 export const initialState: LoginPageState = {
     userEmail: "",

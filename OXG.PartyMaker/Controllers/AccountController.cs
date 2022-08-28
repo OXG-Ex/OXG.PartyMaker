@@ -8,10 +8,13 @@ using System;
 using OXG.PartyMaker.Models.Auth;
 using OXG.PartyMaker.Models;
 using System.Threading.Tasks;
+using OXG.PartyMaker.Models.DTO;
 
 namespace OXG.PartyMaker.Controllers
 {
-    public class AccountController : Controller
+    [ApiController]
+    [Route("api/[controller]/[action]")]
+    public class AccountController : ControllerBase
     {
         private readonly DataContext _dbContext;
         public AccountController(DataContext dbContext)
@@ -19,8 +22,8 @@ namespace OXG.PartyMaker.Controllers
             _dbContext = dbContext;
         }
 
-        [HttpPost("/register")]
-        public async Task<IActionResult> Register(string email, string password, string userName)
+        [HttpPost("")]
+        public async Task<IActionResult> CreateAccount(string email, string password, string userName)
         {
             //TODO: validation
             var identity = new IdentityUser()
@@ -37,13 +40,17 @@ namespace OXG.PartyMaker.Controllers
             };
             var result = await _dbContext.IdentityUsers.AddAsync(identity);
             await _dbContext.SaveChangesAsync();
-            return Json(result.Entity);
+            return new JsonResult(result.Entity);
         }
 
-        [HttpPost("/token")]
-        public IActionResult Token(string username, string password)
+        [HttpPost]
+        public IActionResult GetToken([FromBody] GetTokenDTO tokenDTO)
         {
-            var identity = GetIdentity(username, password);
+            var v = new { Token = "wqerqwer", Message = "Hello" };
+
+            return new JsonResult(v);
+
+            var identity = GetIdentity(tokenDTO.UserEmail, tokenDTO.UserEmail);
             if (identity == null)
             {
                 return BadRequest(new { errorText = "Invalid username or password." });
@@ -65,7 +72,7 @@ namespace OXG.PartyMaker.Controllers
                 access_token = encodedJwt,
                 username = identity.Name
             };
-            return Json(response);
+            return new JsonResult(response);
         }
 
         private ClaimsIdentity GetIdentity(string username, string password)
