@@ -8,28 +8,28 @@ import { PasswordInput } from "../Inputs/PasswordInput";
 import { GetToken } from "../auth/AuthActions";
 
 
-export const LoginPage: React.FC = () => {
+export const SignInPage: React.FC = () => {
     const dispatch = useDispatch();
     const [userEmail, setUserEmail] = useState("");
     const [userPassword, setUserPassword] = useState("");
 
-    const handleChangeEmail = useCallback((e) => {
+    const handleChangeEmail = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         setUserEmail(e.target.value);
-    }, [dispatch]);
+    }, [dispatch, userEmail, setUserEmail]);
 
-    const handleChangePassword = useCallback((e) => {
+    const handleChangePassword = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         setUserPassword(e.target.value);
-    }, [dispatch]);
+    }, [dispatch, userPassword, setUserPassword]);
 
-    const handleSubmitClick = useCallback((e) => {
+    const handleSubmitClick = useCallback(() => {
         dispatch(GetToken(userEmail, userPassword));
-    }, [dispatch]);
+    }, [dispatch, userEmail, userPassword]);
 
 
     return <div>
         <Stack direction={"column"}>
             <TextInput onChangeCallback={handleChangeEmail} type="Email" label="Email" />
-            <PasswordInput onChangeCallback={handleChangePassword} />
+            <PasswordInput onChangeCallback={handleChangePassword} label="Password" />
             <Button variant="outlined" onClick={handleSubmitClick}>Submit</Button>
         </Stack>
     </div>;

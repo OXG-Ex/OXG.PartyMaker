@@ -22,6 +22,7 @@ const authSlice = createSlice({
 });
 
 export const getAuthToken = (store: RootStoreType): string => store.auth.token;
+export const getIsAuthorized = (store: RootStoreType): boolean => !!store.auth.token;
 export const getUserName = (store: RootStoreType): string => store.auth.userName;
 
 export const {

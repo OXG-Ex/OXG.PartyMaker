@@ -15,9 +15,7 @@ import '@fontsource/roboto/700.css';
 
 ReactDOM.render(
     <Provider store={rootStore.store}>
-        <BrowserRouter >
-            <App />
-        </BrowserRouter>
+        <App />
     </Provider>,
     document.getElementById('root'));
 

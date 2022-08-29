@@ -21,7 +21,7 @@ export const PasswordInput: React.FC<PasswordInputProps> = (props: PasswordInput
     return <TextField
         id={id}
         type={showPassword ? 'text' : 'password'}
-        value={props.defaultValue || ""}
+        defaultValue={props.defaultValue || ""}
         onChange={props.onChangeCallback}
         InputProps={{
             endAdornment: (<InputAdornment position="end">
@@ -36,5 +36,6 @@ export const PasswordInput: React.FC<PasswordInputProps> = (props: PasswordInput
             ),
         }}
         label={props.label}
+        variant="outlined"
     />;
 };

@@ -15,7 +15,7 @@ export const TextInput: React.FC<TextInputProps> = (props: TextInputProps) => {
     return <TextField
         id={id}
         type={props.type || 'text'}
-        value={props.defaultValue || ""}
+        defaultValue={props.defaultValue || ""}
         onChange={props.onChangeCallback}
         label={props.label}
         variant="outlined"

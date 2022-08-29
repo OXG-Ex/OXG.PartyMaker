@@ -7,7 +7,7 @@ namespace OXG.PartyMaker.Models.Auth
     {
         public const string ISSUER = "OXG.AuthServer";
         public const string AUDIENCE = "OXG.AuthClient"; 
-        const string KEY = "OXG_ex!2177KeY";  
+        const string KEY = "this is my custom Secret key for authentication";  
         public const int LIFETIME = 1; // TTL = 1 min
         public static SymmetricSecurityKey GetSymmetricSecurityKey()
         {

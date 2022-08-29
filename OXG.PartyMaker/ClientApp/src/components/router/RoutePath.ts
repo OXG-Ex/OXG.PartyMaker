@@ -1,6 +1,6 @@
 export enum RouterPaths {
-    Login = "/login",
-    CreateAccount = "/createAccount",
+    SignIn = "/signin",
+    SignUp = "/signup",
     Root = "/root",
 }
 

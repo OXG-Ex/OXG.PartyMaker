@@ -10,8 +10,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using OXG.PartyMaker.Interfaces;
 using OXG.PartyMaker.Models;
 using OXG.PartyMaker.Models.Auth;
+using OXG.PartyMaker.Services;
 
 namespace OXG.PartyMaker
 {
@@ -49,6 +51,8 @@ namespace OXG.PartyMaker
                     });
 
             services.AddControllers();
+
+            services.AddTransient<IAuthService, AuthService>();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
