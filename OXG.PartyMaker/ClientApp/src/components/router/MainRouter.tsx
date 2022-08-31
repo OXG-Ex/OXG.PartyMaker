@@ -6,12 +6,14 @@ import { NotFoundPage } from "../errors/NotFoundPage";
 import { SignInPage } from "../SignIn/SignInPage";
 import RouterPaths from "./RoutePath";
 import { HistoryInitializer } from "./History/HistoryInitializer";
+import { TopMenu } from "../TopMenu/TopMenu";
 
 export const MainRouter: React.FC = () => {
     useNavigate();
     return (
         <Fragment>
             <HistoryInitializer />
+            <TopMenu />
             <Routes>
                 <Route path={RouterPaths.SignIn} element={<SignInPage />} />
                 <Route path={RouterPaths.SignUp} element={<SignUpPage />} />
