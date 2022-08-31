@@ -1,12 +1,13 @@
-import { Button } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 import { Stack } from "@mui/system";
 import React, { useCallback, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { TextInput } from "../Inputs/TextInput";
+import { useDispatch } from "react-redux";
 
+import { TextInput } from "../Inputs/TextInput";
 import { PasswordInput } from "../Inputs/PasswordInput";
 import { GetToken } from "../auth/AuthActions";
 
+import "./SignInPage.scss";
 
 export const SignInPage: React.FC = () => {
     const dispatch = useDispatch();
@@ -26,11 +27,11 @@ export const SignInPage: React.FC = () => {
     }, [dispatch, userEmail, userPassword]);
 
 
-    return <div>
-        <Stack direction={"column"}>
+    return <Box className="sign-in-container">
+        <Stack direction={"column"} className="inputs-stack">
             <TextInput onChangeCallback={handleChangeEmail} type="Email" label="Email" />
             <PasswordInput onChangeCallback={handleChangePassword} label="Password" />
             <Button variant="outlined" onClick={handleSubmitClick}>Submit</Button>
         </Stack>
-    </div>;
+    </Box>;
 };

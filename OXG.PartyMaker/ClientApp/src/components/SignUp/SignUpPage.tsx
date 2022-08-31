@@ -8,6 +8,8 @@ import { TextInput } from "../Inputs/TextInput";
 import { SignUp } from "../auth/AuthActions";
 import { SignUpDTO } from "./models/SignUpDTO";
 
+import './SignUpPage.scss';
+
 export const SignUpPage: React.FC = () => {
     const dispatch = useDispatch();
 
@@ -24,8 +26,8 @@ export const SignUpPage: React.FC = () => {
 
     const handleSubmitClick = useCallback(() => dispatch(SignUp(values)), [dispatch, values]);
 
-    return <div>
-        <Stack direction={"column"}>
+    return <div className="sign-un-container">
+        <Stack direction={"column"} className="inputs-stack">
             <TextInput onChangeCallback={handleChange("email")} type="Email" label="Email" />
             <TextInput onChangeCallback={handleChange("userName")} type="Text" label="Name" />
             <PasswordInput onChangeCallback={handleChange("password")} label="Password" />

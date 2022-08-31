@@ -1,6 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import { AxiosResponse } from "axios";
-import { takeLatest, call, put } from "redux-saga/effects";
+import { takeLatest, call, put, takeEvery } from "redux-saga/effects";
 
 import { TokenResponse } from "../../../models/TokenResponse";
 import { restClientInstance } from "../../../services/serviceModules";
@@ -15,7 +15,6 @@ import { History } from "../../router/History/History";
 const authSagas = [
     takeLatest(AuthActions.GetToken, workerAuthorize),
     takeLatest(AuthActions.SignUp, workerSignUp),
-    takeLatest(AuthActions.SetAuthData, setAuthData)
 ];
 
 export function* workerAuthorize(actionPayload: PayloadAction<{ email: string, password: string; }>): Generator {
@@ -23,9 +22,9 @@ export function* workerAuthorize(actionPayload: PayloadAction<{ email: string, p
         const { email, password } = actionPayload.payload;
         const result = (yield call([restClientInstance, restClientInstance.Post], "api/account/getToken", { userEmail: email, userPassword: password })) as AxiosResponse<TokenResponse>;
         if (result.status === ResponseCode.Success) {
-            yield call(AuthActions.SetAuthData, result.data.access_token, result.data.username);
+            yield* setAuthData(result.data.access_token, result.data.username);
         } else {
-            alert(result);
+            console.error(result);
         }
     }
     catch (error) {
@@ -38,10 +37,10 @@ export function* workerSignUp(actionPayload: PayloadAction<{ dto: SignUpDTO; }>)
     try {
         const result = (yield call([restClientInstance, restClientInstance.Post], "api/account/SignUp", payload)) as AxiosResponse<TokenResponse>;
         if (result.status === ResponseCode.Success) {
-            yield call(AuthActions.SetAuthData, result.data.access_token, result.data.username);
+            yield* setAuthData(result.data.access_token, result.data.username);
         }
         else {
-            alert(result);
+            console.error(result);
         }
     }
     catch (error) {
@@ -49,14 +48,14 @@ export function* workerSignUp(actionPayload: PayloadAction<{ dto: SignUpDTO; }>)
     }
 }
 
-export function* setAuthData(actionPayload: PayloadAction<{ access_token: string, userName: string; }>): Generator {
-    const payload = actionPayload.payload;
+export function* setAuthData(access_token: string, userName: string): Generator {
     try {
-        yield put(setAuthToken(payload.access_token));
-        yield put(setUserName(payload.userName));
+        yield put(setAuthToken(access_token));
+        yield put(setUserName(userName));
         yield call(History.push(RouterPaths.Root));
     }
     catch (error) {
+        console.error(error);
         //error handling
     }
 }

@@ -9,11 +9,11 @@ import { HistoryInitializer } from "./History/HistoryInitializer";
 import { TopMenu } from "../TopMenu/TopMenu";
 
 export const MainRouter: React.FC = () => {
-    useNavigate();
     return (
         <Fragment>
-            <HistoryInitializer />
+
             <TopMenu />
+            <HistoryInitializer />
             <Routes>
                 <Route path={RouterPaths.SignIn} element={<SignInPage />} />
                 <Route path={RouterPaths.SignUp} element={<SignUpPage />} />
