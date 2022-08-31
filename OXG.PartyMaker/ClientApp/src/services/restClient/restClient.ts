@@ -41,8 +41,6 @@ export class RestClient implements IRestClient {
 }
 
 export interface IRestClient {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    // getAxiosInstance(apiUrl: string, params: any): AxiosInstance;
     Post: (apiUrl: string, data: any) => Promise<AxiosResponse>;
     Get: (apiUrl: string, data: any) => Promise<AxiosResponse>;
     Patch: (apiUrl: string, data: any) => Promise<AxiosResponse>;
